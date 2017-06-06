@@ -84,7 +84,7 @@ class Recover(SaltMixin, generic.FormView):
             'site': self.get_site(),
             'user': self.user,
             'username': self.user.get_username(),
-            'token': signing.dumps(self.user.pk, salt=self.salt),
+            'token': signing.dumps(str(self.user.pk), salt=self.salt),
             'secure': self.request.is_secure(),
         }
         body = loader.render_to_string(self.email_template_name,
